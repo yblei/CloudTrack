@@ -81,10 +81,6 @@ sudo apt-get install libavdevice-dev
 pip install av==11.0.0 --no-binary av
 ```
 
-### Pip install -e groundingdino fails with pyhton 3.12
-
-@ Co-Authors: Check if you also have this issue ... 
-
 ## Usage
 
 See [minimal_examply.py](minimal_examply.py) for further details on the implementation.
