@@ -21,8 +21,12 @@ git clone https://github.com/utn-air/CloudTrack.git
 ```
 ### 2. Install the dependencies
 ```bash
+cd CloudTrack
+python -m venv ./.cloudtrack
+source ./.cloudtrack/bin/activate
 pip install wheel
 pip install setuptools
+pip install typeguard
 pip install -e .[backend]
 ```
 
