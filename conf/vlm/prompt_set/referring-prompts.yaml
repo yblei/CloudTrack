@@ -1,0 +1,22 @@
+# referring prompts are created to instruct single stage referring detectors.
+# such systems detect objects in an image based on a natural language description.
+# The language description is typically simpler. System prompts are not 
+# required.
+
+system_prompt: "None"
+
+# search and rescue setting: injury
+sar_injury_prompt: "All injured persons"
+
+# search and rescue setting: shirt description
+sar_shirt_gray_prompt: "The person with a gray shirt"
+sar_shirt_green_prompt: "The person with a green shirt"
+sar_shirt_blue_prompt: "The person with a blue shirt"
+
+# search and rescue setting: pose description
+sar_pose_laying_prompt: "The person laying down"
+sar_pose_standing_prompt: "The person standing"
+sar_pose_sitting_prompt: "The person sitting"
+
+# search and rescue setting: every person is valid
+sar_person_prompt: "The person"

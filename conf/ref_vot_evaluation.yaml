@@ -1,0 +1,30 @@
+defaults: 
+  - _self_
+  - dataset: vot/ref_vot_22.yaml
+  - override hydra/launcher: submitit_local
+
+f_max: -1
+reinit_each: 20
+
+hydra:
+  sweeper: 
+    params:
+      dataset: vot/ref_vot_22.yaml
+      reinit_each: range(5,60,5)
+
+  launcher: # only specify the overwrites here for the submitit launcher.
+    # @package hydra.launcher
+    #_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+    #_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.LocalLauncher
+    submitit_folder: ${hydra.sweep.dir}/.submitit/%j
+    timeout_min: 300
+    cpus_per_task: 1
+    gpus_per_node: 1
+    tasks_per_node: 1
+    mem_gb: 32
+    nodes: 1
+    name: ${hydra.job.name}
+
+
+#Damit läufts: python first_demo.py --multirun hydra/launcher=submitit_local -p hydra.laucher
+# Slurm start: python vot_evaluation.py -m hydra/launcher=submitit_slurm

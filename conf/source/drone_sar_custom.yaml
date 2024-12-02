@@ -1,0 +1,6 @@
+path: /home/blei/cloud_track/datasets/custom_videos/sar_drone_reversed_38_hd.mp4
+prompt: "The drone needs to find an injured person. He is most likely unconcious. Is this person laying on the ground?"
+interactive: false
+f_max: -1
+simulate_realtime_video: false
+fps: 60

@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools==75.6.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cloud_track"
+version = "0.0.1"
+authors = [
+    { name = "Yannik Blei", email = "yannik.blei@utn.de" },
+]
+description = "Detection of objects in videos based on deep learning."
+requires-python = ">=3.9" # NOTE: oldest non-EOL python (update on 10.2025)
+dependencies = [
+    "wheel",
+    "torch",
+    "typer",
+    "loguru",
+    "msgpack",
+    "tinyrpc",
+    "pillow",
+    "requests",
+    "opencv-contrib-python==4.9.0.80",
+    "numpy==1.26.4"
+    ]
+
+[project.scripts]
+cloud-track = "cloud_track.cli:main"
+
+[project.optional-dependencies]
+
+backend = [
+"av",
+"Pillow",
+"tinyrpc",
+"requests",
+"hydra-core",
+"gevent",
+"werkzeug",
+"torchvision",
+"transformers==4.46.3",
+"bitsandbytes",
+"accelerate",
+"groundingdino @ git+https://github.com/IDEA-Research/GroundingDINO.git"
+]
+
+dev = [
+    "pycodestyle==2.12.1",
+    "black",
+    "autopep8==2.3.1",
+    "isort==5.13.2",
+    "mypy"
+]
+
+eval = [
+    "motmetrics",
+    "tensorflow"
+]
+
+[tool.setuptools]
+py-modules = ["cloud_track"]
+
+[tool.autopep8]
+max_line_length = 79
+in-place = true
+recursive = true
+
+[tool.black]
+line-length = 79
+
+[tool.isort]
+multi_line_output = 3
+line_length = 79
+include_trailing_comma = true
+use_parentheses = true

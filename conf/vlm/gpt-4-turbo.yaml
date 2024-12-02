@@ -1,0 +1,4 @@
+name: "gpt-4-turbo"
+
+defaults:
+  - prompt_set: gpt-4-prompts

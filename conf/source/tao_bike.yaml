@@ -1,0 +1,5 @@
+# from vot-2022
+path: /home/blei/cloud_track/datasets/tao_train/frames/train/YFCC100M/v_f69ebe5b731d3e87c1a3992ee39c3b7e
+prompt: "person riding a bike"
+interactive: false
+f_max: -1

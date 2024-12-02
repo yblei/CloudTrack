@@ -1,0 +1,2 @@
+image_path: datasets/davis_trainval/DAVIS
+prompt_path: datasets/refering_davis_annotations/Davis17_annot1.txt # use the first frame annots for now

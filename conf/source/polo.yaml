@@ -1,0 +1,5 @@
+# from vot-2022
+path: datasets/polo
+prompt: "person with black shirt on horseback"
+interactive: false
+f_max: -1

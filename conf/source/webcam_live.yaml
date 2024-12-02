@@ -1,0 +1,7 @@
+
+# Stream from webcam
+path: 0
+prompt: make_interactive
+interactive: true
+f_max: 200
+resolution: [480,640]

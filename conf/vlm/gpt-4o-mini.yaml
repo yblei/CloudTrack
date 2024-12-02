@@ -1,0 +1,4 @@
+name: "gpt-4o-mini"
+
+defaults:
+  - prompt_set: gpt-4-prompts

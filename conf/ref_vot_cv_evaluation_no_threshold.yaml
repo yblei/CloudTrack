@@ -1,0 +1,42 @@
+defaults: 
+  - _self_
+  - dataset: vot/ref_vot_22.yaml
+  - cv_tracker: nano.yaml
+  - platform: local.yaml
+  - visualizer: headless.yaml
+  - backend: localhost.yaml
+#  - override hydra/launcher: submitit_local
+
+f_max: -1
+reinit_each: -1
+
+
+hydra:
+  sweeper: 
+    params:
+      platform: local.yaml
+      #platform.use_rpc: True # we use the rpc for parameter optimization
+      backend: localhost.yaml
+      visualizer: benchmark.yaml
+      dataset: vot/ref_vot_22.yaml
+      cv_tracker: csrt.yaml, goturn.yaml, mil.yaml
+      #box_threshold: range(0.1,0.9,0.1) # threshold of the tracking frontend for re-initialization
+      #reinit_each: range(5,60,5)
+      #cv_tracker.threshold: range(0.3, 0.95, 0.05)
+
+#  launcher: # only specify the overwrites here for the submitit launcher.
+    # @package hydra.launcher
+    #_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+    #_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.LocalLauncher
+#    submitit_folder: ${hydra.sweep.dir}/.submitit/%j
+#    timeout_min: 300
+#    cpus_per_task: 2
+#    gpus_per_node: 1
+#    tasks_per_node: 1
+#    mem_gb: 32
+#    nodes: 1
+#    name: ${hydra.job.name}
+
+
+#Damit läufts: python first_demo.py --multirun hydra/launcher=submitit_local -p hydra.laucher
+# Slurm start: python vot_cv_evaluation.py -m hydra/launcher=submitit_slurm

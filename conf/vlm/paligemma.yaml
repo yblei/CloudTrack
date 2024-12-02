@@ -1,0 +1,4 @@
+name: "paligemma"
+
+defaults:
+  - prompt_set: gpt-4-prompts

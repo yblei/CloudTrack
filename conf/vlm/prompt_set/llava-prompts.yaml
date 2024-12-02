@@ -1,0 +1,17 @@
+system_prompt: "You are an intelligent assistant, helping a drone on a search and rescue mission. Describe the image in one sentence. Focus on people in the image."
+
+# search and rescue setting: injury
+sar_injury_prompt: "Based on this image, is there an injured person in the image? Answer with yes or no. If in doubt, rather say yes."
+
+# search and rescue setting: shirt description
+sar_shirt_gray_prompt: "Based on the image, is there a person wearing a gray shirt in the image? Answer with yes or no. If in doubt, rather say yes."
+sar_shirt_green_prompt: "Based on the image, is there a person wearing a green shirt in the image? Answer with yes or no. If in doubt, rather say yes."
+sar_shirt_blue_prompt: "Based on the image, is there a person wearing a blue shirt in the image? Answer with yes or no. If in doubt, rather say yes."
+
+# search and rescue setting: pose description
+sar_pose_laying_prompt: "Based on this image, is there a person laying down in the image? Answer with yes or no. If in doubt, rather say yes."
+sar_pose_standing_prompt: "Based on this image, is there a person standing in the image? Answer with yes or no. If in doubt, rather say yes."
+sar_pose_sitting_prompt: "Based on this image, is there a person sitting in the image? Answer with yes or no. If in doubt, rather say yes."
+
+# search and rescue setting: every person is valid
+sar_person_prompt: "Based on this image, is there a person in the image? Answer with yes or no. If in doubt, rather say yes."

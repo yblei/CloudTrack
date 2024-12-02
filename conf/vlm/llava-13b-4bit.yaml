@@ -1,0 +1,4 @@
+name: "llava-hf/llava-1.5-13b-hf"
+
+defaults:
+- prompt_set: llava-prompts.yaml

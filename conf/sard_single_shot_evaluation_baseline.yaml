@@ -1,0 +1,31 @@
+defaults: 
+  - _self_
+  - vlm: None
+#  - override hydra/launcher: submitit_local
+
+experiment: "sar_injury"
+detector: "glee_lite"
+
+hydra:
+  sweeper: 
+    params:
+      detector: glee_lite, glee_plus, glee_pro, sam_hq # sam_lq macht nur die segmentierung besser - die brauchen wir eh nicht!
+      experiment: sar_person, sar_shirt_gray, sar_shirt_green, sar_shirt_blue, sar_pose_laying, sar_pose_standing, sar_pose_sitting, sar_injury
+
+
+#  launcher: # only specify the overwrites here for the submitit launcher.
+    # @package hydra.launcher
+    #_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.SlurmLauncher
+    #_target_: hydra_plugins.hydra_submitit_launcher.submitit_launcher.LocalLauncher
+#    submitit_folder: ${hydra.sweep.dir}/.submitit/%j
+#    timeout_min: 300
+#    cpus_per_task: 2
+#    gpus_per_node: 1
+#    tasks_per_node: 1
+#    mem_gb: 32
+#    nodes: 1
+#    name: ${hydra.job.name}
+
+
+#Damit läufts: python first_demo.py --multirun hydra/launcher=submitit_local -p hydra.laucher
+# Slurm start: python vot_cv_evaluation.py -m hydra/launcher=submitit_slurm

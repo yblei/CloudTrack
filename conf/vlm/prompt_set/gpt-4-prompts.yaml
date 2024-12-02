@@ -1,0 +1,18 @@
+
+system_prompt: "You are an intelligent AI assistant that helps a drone in a search and rescue mission. If in doubt, rather say yes."
+
+# search and rescue setting: injury
+sar_injury_prompt: "The drone needs to find an injured person. Would you recommend sending help to the person in the image? Start your justification with 'Lets analyze the image'."
+
+# search and rescue setting: shirt description
+sar_shirt_gray_prompt: "The drone needs to find a person wearing a gray shirt. Is this person in this image wearing a gray shirt? Start your justification with 'Lets analyze the image'."
+sar_shirt_green_prompt: "The drone needs to find a person wearing a green shirt. Is this person in this image wearing a green shirt? Start your justification with 'Lets analyze the image'."
+sar_shirt_blue_prompt: "The drone needs to find a person wearing a blue shirt. Is this person in this image wearing a blue shirt? Start your justification with 'Lets analyze the image'."
+
+# pose prompt:
+sar_pose_laying_prompt: "The drone needs to find a person that is laying down. Is the person in this image in the pose? Start your justification with 'Lets analyze the image'."
+sar_pose_standing_prompt: "The drone needs to find a person that is standing. Is the person in this image in the pose? Start your justification with 'Lets analyze the image'."
+sar_pose_sitting_prompt: "The drone needs to find a person that is sitting. Is the person in this image in the pose? Start your justification with 'Lets analyze the image'."
+
+# search and rescue setting: every person is valid
+sar_person_prompt: "The drone needs to find a person. Is there a person in this image? Start your justification with 'Lets analyze the image'."

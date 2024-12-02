@@ -1,0 +1,11 @@
+defaults: 
+  - _self_
+  - source: apple_video
+  #- source: drone_sar_custom
+  - visualizer: with_screen
+  - cv_tracker: nano.yaml
+  - backend: localhost.yaml
+
+# definition of default values
+source:
+  resolution: null # Default [height, width]. "null" resolves to None and means "use native resolution"

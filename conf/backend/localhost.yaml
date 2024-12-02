@@ -1,0 +1,2 @@
+rpc_ip: http://127.0.0.1 # IP address of the RPC server
+rpc_port: 8080 # Port of the RPC server

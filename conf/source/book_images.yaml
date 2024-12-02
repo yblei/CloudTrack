@@ -1,0 +1,5 @@
+# from vot-2022
+path: datasets/book
+prompt: "a book"
+interactive: false
+f_max: -1

@@ -1,0 +1,2 @@
+rpc_ip: http://AIR-Tower.local # IP address of the RPC server
+rpc_port: 8080 # Port of the RPC server

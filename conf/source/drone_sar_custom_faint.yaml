@@ -1,0 +1,6 @@
+path: /home/blei/cloud_track/datasets/custom_videos/DJI_20240919162141_0036_D.LRF
+prompt: "The drone needs to find an injured person. Is there a person in the image and does it require help?"
+interactive: false
+f_max: -1
+simulate_realtime_video: true
+fps: 60

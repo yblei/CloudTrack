@@ -1,0 +1,5 @@
+# from vot-2022
+path: datasets/rowing
+prompt: "head of the second person"
+interactive: false
+f_max: -1
