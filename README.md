@@ -17,7 +17,7 @@ Nowadays, unmanned aerial vehicles (UAVs) are commonly used in search and rescue
 
 
 ```bash
-git clone https://github.com/utn-air/CloudTrack.git](https://github.com/utn-blei/CloudTrack
+git clone https://github.com/utn-blei/CloudTrack
 ```
 ### 2. Install the dependencies
 ```bash
