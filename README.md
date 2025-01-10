@@ -8,7 +8,7 @@ Nowadays, unmanned aerial vehicles (UAVs) are commonly used in search and rescue
 
 ![Flow Chart](assets/image.png)
 
-**Refer to the official [publication](https://arxiv.org/pdf/2409.16111) for more information.**
+**Refer to the official [publication](https://arxiv.org/pdf/2409.16111) and the [video](https://www.youtube.com/watch?v=GtfX8S_oMAE&t=25s) for more information.**
 
 
 ## Installation:
