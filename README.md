@@ -70,7 +70,7 @@ We support easy inference on your personal data for benchmarking purposes. The f
 python -m cloud_track video-demo --video-source 0 --ip http://0.0.0.0 --port 3000 --output-file "./output.json"
 ```
 
-See [minimal_examply.py](minimal_examply.py) if you need more information for your analysis.
+See [minimal_examply.py](./minimal_examply.py) if you need more information for your analysis.
 
 ## Known issues:
 
