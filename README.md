@@ -2,8 +2,7 @@
 
 ![CI](https://github.com/utn-air/CloudTrack/actions/workflows/main.yml/badge.svg)
 
-**Authors**: [Yannik Blei](https://www.utn.de/person/yannik-blei/), [Michael Krawez](https://www.utn.de/en/person/michael-krawez/), [Nisarga Nilavadi](https://www.utn.de/person/nisarga-nilavadi-chandregowda/), [Tanja Katharina Kaiser](https://www.utn.de/person/tanja-kaiser/), [Wolfram Burgard](https://www.utn.de/person/wolfram-burgard-2/)
-
+**Authors**: [Yannik Blei](https://www.utn.de/person/yannik-blei/), [Michael Krawez](https://www.utn.de/en/person/michael-krawez/), [Nisarga Nilavadi](https://www.utn.de/person/nisarga-nilavadi-chandregowda/), [Tanja Katharina Kaiser](https://www.utn.de/person/tanja-kaiser/), [Wolfram Burgard](https://www.utn.de/person/wolfram-burgard-2/)\
 ICRA 2025
 
 Nowadays, unmanned aerial vehicles (UAVs) are commonly used in search and rescue scenarios to gather information in the search area. The automatic identification of the person searched for in aerial footage could increase the autonomy of such systems, reduce the search time, and thus increase the missed person's chances of survival. In this paper, we present a novel approach to perform semantically conditioned open vocabulary object tracking that is specifically designed to cope with the limitations of UAV hardware. Our approach has several advantages. It can run with verbal descriptions of the missing person, e.g., the color of the shirt, it does not require dedicated training to execute the mission and can efficiently track a potentially moving person. Our experimental results demonstrate the versatility and efficacy of our approach.
