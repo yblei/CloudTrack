@@ -43,19 +43,20 @@ class CloudTrack:
 
 
         Returns:
-            tuple[tuple[int, int, int, int], str]: The bounding box of the tracked object in (xyxy format, dennoting top left and bottom right corner) and the justification for the decision.
+            tuple[tuple[int, int, int, int], str, float]: The bounding box of the tracked object in (xyxy format, dennoting top left and bottom right corner), the justification for the decision and the tracking score. The score is None if the tracker is not initialized.
         """
         # convret frame to RGB
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 
         justification = None
+        score = None
         if not self.tracker_initialized:
             bbox, justification = self.add_keyframe(
                 frame, category, description
             )
             self.current_justification = justification
         else:
-            bbox, success = self.track_frame(frame)
+            bbox, success, score = self.track_frame(frame)
 
             if not success:
                 self.reset()
@@ -64,7 +65,7 @@ class CloudTrack:
         if bbox is not None:
             bbox = np.array(bbox)
 
-        return bbox, self.current_justification
+        return bbox, self.current_justification, score
 
     def add_keyframe(self, frame: np.ndarray, category: str, description: str):
         # convert frame to PIL
@@ -100,6 +101,6 @@ class CloudTrack:
         return selected_box, justification
 
     def track_frame(self, frame: np.ndarray):
-        success, bbox = self.frontend_tracker.update(frame)
+        success, bbox, score = self.frontend_tracker.update(frame)
 
-        return bbox, success
+        return bbox, success, score

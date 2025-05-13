@@ -42,6 +42,12 @@ def complete_detector():
         "sam_lq",
     ]
 
+def complete_theme():
+    return [
+        "sar",
+        "good",
+    ]
+
 
 @app.command(help="Run the backend server.")
 def backend(
@@ -98,7 +104,7 @@ def video_demo(
     ] = "a person",
     description: Annotated[
         str, typer.Option(help="The description of the object.")
-    ] = "Is the person unconcious?",
+    ] = "The missing person is unconscious.",
     output_file: Annotated[
         str, typer.Option(help="The file to write the results to.")
     ] = None,
@@ -147,14 +153,29 @@ def live_demo(
     ] = "a person",
     description: Annotated[
         str, typer.Option(help="The description of the object.")
-    ] = "Is the person unconcious?",
+    ] = "The missing person is unconscious.",
+    ui_theme: Annotated[
+        str,
+        typer.Option(
+            help="he theme of the UI. can be 'sar' for search and rescue missions or 'good' if a match is considered positive, i.e. when using cloud track for object detection.",
+            autocompletion=complete_theme,
+        ),
+    ] = "sar",
+    fullscreen: Annotated[
+        bool,
+        typer.Option(
+            help="Whether to run the demo in fullscreen mode or not.",
+            is_eager=True,
+        ),
+    ] = False,
+    
 ):
     """
     Run the [blue]live demo[/blue] with webcam input. :camera:
     """
     from cloud_track.api_functions.live_demo import run_live_demo
 
-    resolution: tuple = (640, 480)
+    resolution: tuple = (1280, 720)
 
     video_source = (
         int(video_source) if video_source.isdigit() else video_source
@@ -162,13 +183,16 @@ def live_demo(
 
     run_live_demo(
         video_source=video_source,
-        tracker_resolution=resolution,
+        viewer_resolution=resolution,
         cathegory=cathegory,
         description=description,
         frontend_tracker=frontend_tracker,
         frontend_tracker_threshold=frontend_tracker_threshold,
         backend_address=ip,
         backend_port=port,
+        ui_theme=ui_theme,
+        fullscreen=fullscreen,
+        
     )
 
 

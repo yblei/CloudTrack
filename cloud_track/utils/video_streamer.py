@@ -1,5 +1,6 @@
 from pathlib import Path
-
+from loguru import logger
+import copy
 import cv2
 
 
@@ -21,13 +22,40 @@ class VideoStreamer:
         self.max_frame = max_frame
         self.frame_count = 0
 
+        self.software_resize = copy.deepcopy(resize)  # enable resizing by default
+        
         if isinstance(source, int) or source.isdigit():
             self.cap = cv2.VideoCapture(int(source))
             # set resolution
             if resize:
                 self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.resize[0])
                 self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.resize[1])
-                self.resize = False  # disable resizing since it's already done
+
+                # Certain Cameras only support certain resolutions and select the closest one.
+                # So we need to check if the camera supports the resolution we want.
+                # check if the camera supports the resolution
+                # pull test frame to get the camera resolution
+                success, test_image = self.cap.read()
+                if not success:
+                    raise RuntimeError("Could not read from camera.")
+                
+                camera_width, camera_height = (test_image.shape[1], test_image.shape[0])
+                
+                if camera_width == self.resize[0] and camera_height == self.resize[1]:
+                    self.software_resize = False
+                else:
+                    self.cap.release()
+                    logger.warning(
+                        f"Warning: Camera does not support resolution {self.resize}. "
+                        f"Using software resizing instead. This might skew the image."
+                    )
+                    logger.info(
+                        f"Supported resolutions are: {test_resolutions(int(source))}"
+                    )
+                    self.cap = cv2.VideoCapture(int(source))
+                    self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.resize[0])
+                    self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.resize[1])
+                
             self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
         if isinstance(source, str):
             source = Path(source)
@@ -55,10 +83,10 @@ class VideoStreamer:
         if not success:
             raise StopIteration
 
-        if self.resize:
-            assert isinstance(self.resize, tuple)
+        if self.software_resize:
+            assert isinstance(self.software_resize, tuple)
             image = cv2.resize(
-                image, self.resize, interpolation=cv2.INTER_AREA
+                image, self.software_resize, interpolation=cv2.INTER_AREA
             )
 
         if self.color_mode == "rgb":
@@ -66,6 +94,42 @@ class VideoStreamer:
 
         self.frame_count += 1
         return image
+    
+def test_resolutions(camera_index=0):
+    common_resolutions = [
+        (160, 120),    # QQVGA
+        (320, 240),    # QVGA
+        (640, 480),    # VGA
+        (800, 600),    # SVGA
+        (1024, 768),   # XGA
+        (1280, 720),   # HD
+        (1280, 1024),  # SXGA
+        (1600, 1200),  # UXGA
+        (1920, 1080),  # Full HD
+        (2048, 1536),  # QXGA
+        (2592, 1944),  # 5MP
+        (3840, 2160),  # 4K
+    ]
+
+    cap = cv2.VideoCapture(camera_index)
+    supported = []
+
+    for width, height in common_resolutions:
+        cap.set(cv2.CAP_PROP_FRAME_WIDTH, width)
+        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
+
+        actual_width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+        actual_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+
+        if int(actual_width) == width and int(actual_height) == height:
+            supported.append((width, height))
+            logger.info(f"Supported: {width}x{height}")
+        else:
+            logger.info(f"Not supported: {width}x{height} (Got {int(actual_width)}x{int(actual_height)})")
+            pass
+
+    cap.release()
+    return supported
 
 
 if __name__ == "__main__":
