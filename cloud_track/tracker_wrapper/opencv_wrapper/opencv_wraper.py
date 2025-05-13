@@ -83,10 +83,10 @@ class OpenCVWrapper:
             int(new_box[1] + new_box[3]),
         )
 
-        tracking_quality = self.__tracking_quality()
+        tracking_quality, score = self.__tracking_quality()
         success = tracking_success and tracking_quality
 
-        return success, new_box
+        return success, new_box, score
 
     def __tracking_quality(self):
         """
@@ -106,13 +106,13 @@ class OpenCVWrapper:
         score = self.tracker.getTrackingScore()
         success = score > self.reinit_threshold
 
-        logger.debug(f"Tracking score: {score}")
+        #logger.debug(f"Tracking score: {score}")
         if not success:
             logger.info(
                 f"Tracking failed with score {score}. Reinitializing tracker."
             )
 
-        return success
+        return success, score
 
     def shutdown(self):
         """

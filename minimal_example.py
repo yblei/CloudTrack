@@ -82,9 +82,12 @@ def main(cfg: DictConfig) -> None:
     )
 
     for frame in stream:
-        box, justification = cloud_track.forward(
+        box, justification, score = cloud_track.forward(
             frame, category=cathegory, description=description
         )
+        if score is not None:
+            print(f"\rTracking Score: {score:.5f}", end="")
+        
         if justification is not None:
             print("Justification: ", justification)
 

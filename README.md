@@ -39,6 +39,7 @@ cd ../..
 
 
 ## Run the Demo:
+
 #### First: Run the backend
 Run with **LLaVA 13b** as vlm (works out-of-the box):
 ```bash
@@ -51,16 +52,19 @@ OPENAI_API_KEY=<Your Key Here> && python -m cloud_track backend --vlm gpt-4o-min
 ```
 
 ### Second: Run the Demos
-The demo connects to the backend via network. We assume both instances run on the same machine. Otherwise, please change IP address and port accordingly.
+The demo connects to the backend via network. We assume both instances **run on the same machine**. Otherwise, please change IP address and port accordingly.
+
 
 #### Run demo on a sample video:
 ```bash
 python -m cloud_track video-demo --video-source assets/faint.mp4 --ip http://0.0.0.0 --port 3000
 ```
+
 #### Run the interactive demo:
 ```bash
-python -m cloud_track live-demo --video-source 0 --ip http://0.0.0.0 --port 3000 --cathegory "a person" --description "Is the person wearing a gray shirt?"
+python -m cloud_track live-demo --video-source 0 --ip http://0.0.0.0 --port 3000 --cathegory "a person" --description "The missing person is unconscious."
 ```
+<img src="assets/demo.png" alt="Alt text" style="display: block; margin: auto; padding:20px; width:80%; max-width:600px;">
 
 ## Use CloudTrack as a baseline:
 We support easy inference on your personal data for benchmarking purposes. The following command supports input from a folder of images or a video file.
