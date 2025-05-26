@@ -23,6 +23,7 @@ class VideoStreamer:
         self.frame_count = 0
 
         self.software_resize = copy.deepcopy(resize)  # enable resizing by default
+        self.is_network_stream = False
         
         if isinstance(source, int) or source.isdigit():
             self.cap = cv2.VideoCapture(int(source))
@@ -58,17 +59,23 @@ class VideoStreamer:
                 
             self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
         if isinstance(source, str):
-            source = Path(source)
-            # error if the source is not a file or directory
-            if not source.exists():
-                raise FileNotFoundError(f"Source {source} does not exist.")
-            if source.is_dir():
-                # check, if there are any images found with this regex
-                image_name_pattern = source / image_name_pattern
-                self.cap = cv2.VideoCapture(str(image_name_pattern))
-            else:
-                # assume it's a video file
-                self.cap = cv2.VideoCapture(str(source))
+            if "rtmp://" in source:
+                # if the source is a rtmp stream, use the rtmp url
+                self.cap = cv2.VideoCapture(source) 
+                self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)
+                self.is_network_stream = True
+            else:           
+                source = Path(source)
+                # error if the source is not a file or directory
+                if not source.exists():
+                    raise FileNotFoundError(f"Source {source} does not exist.")
+                if source.is_dir():
+                    # check, if there are any images found with this regex
+                    image_name_pattern = source / image_name_pattern
+                    self.cap = cv2.VideoCapture(str(image_name_pattern))
+                else:
+                    # assume it's a video file
+                    self.cap = cv2.VideoCapture(str(source))
 
     def __iter__(self):
         return self
@@ -79,6 +86,11 @@ class VideoStreamer:
 
         for _ in range(self.skip):
             success, image = self.cap.read()
+        
+        if self.is_network_stream:
+            # this helps to reduce latency
+            for _ in range(5):
+                success, image = self.cap.read()
 
         if not success:
             raise StopIteration
