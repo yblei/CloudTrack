@@ -120,7 +120,7 @@ def run_live_demo(
     )
     
     window_name = "CloudTrack: Visualization"
-    dashboard_maker = DashboardMaker(ui_theme, window_name)
+    dashboard_maker = DashboardMaker(ui_theme, window_name, fullscreen)
 
     thread_running = False
     box = None
@@ -281,7 +281,7 @@ def get_inputs_tkinter(old_description, old_cathegory):
 
 
 class DashboardMaker:
-    def __init__(self, ui_theme, window_name):
+    def __init__(self, ui_theme, window_name, fullscreen):
         # load assets/alert_sign.png
         alert_sign = cv2.imread("assets/alert_sign.png")
 
@@ -291,6 +291,7 @@ class DashboardMaker:
         self.alert_sign = alert_sign
         self.ui_theme = ui_theme
         self.window_name = window_name
+        self.fullscreen = fullscreen
         
     def render(
         self,
@@ -328,7 +329,12 @@ class DashboardMaker:
         else:
             background_color = background_color_default
 
-        _, _, w, h = cv2.getWindowImageRect(window_name)
+        if self.fullscreen:
+            w = 1600
+            h = 1000
+        else:
+            _, _, w, h = cv2.getWindowImageRect(window_name)
+    
 
         # if smaller than hd frame size return only the hd_frame
         if w < hd_frame.shape[1] or h < hd_frame.shape[0]:
@@ -361,18 +367,20 @@ class DashboardMaker:
 
             sign_target_h = y_offset - 2 * alert_sign_y
             sign_scale_factor = sign_target_h / h_sign
+            
+            if sign_scale_factor > 0.05:
+                # display alert sign if window is large enough
+                alert_sign_resized = cv2.resize(
+                    self.alert_sign,
+                    (int(sign_scale_factor * w_sign), int(sign_scale_factor * h_sign)),
+                    interpolation=cv2.INTER_AREA,
+                )
+                alert_sign_x = int(w - alert_sign_resized.shape[1] - 10)
 
-            alert_sign_resized = cv2.resize(
-                self.alert_sign,
-                (int(sign_scale_factor * w_sign), int(sign_scale_factor * h_sign)),
-                interpolation=cv2.INTER_AREA,
-            )
-            alert_sign_x = int(w - alert_sign_resized.shape[1] - 10)
-
-            final_frame[
-                alert_sign_y : alert_sign_y + alert_sign_resized.shape[0],
-                alert_sign_x : alert_sign_x + alert_sign_resized.shape[1],
-            ] = alert_sign_resized
+                final_frame[
+                    alert_sign_y : alert_sign_y + alert_sign_resized.shape[0],
+                    alert_sign_x : alert_sign_x + alert_sign_resized.shape[1],
+                ] = alert_sign_resized
 
         # to fix: Add alert symbol to the top right corner of the window
         # when theme == "alert" and match

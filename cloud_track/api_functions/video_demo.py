@@ -54,7 +54,7 @@ def run_video_demo(
     )
     
     window_name = "CloudTrack: Visualization"
-    dashbard_maker = DashboardMaker(ui_theme="sar", window_name=window_name)
+    dashbard_maker = DashboardMaker(ui_theme="sar", window_name=window_name, fullscreen=False)
     
     cv2.namedWindow(window_name, cv2.WND_PROP_FULLSCREEN)
     cv2.setWindowProperty(
