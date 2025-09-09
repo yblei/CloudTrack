@@ -82,6 +82,9 @@ def main(cfg: DictConfig) -> None:
     )
 
     for frame in stream:
+        # convert frame to BGR
+        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+
         box, justification, score = cloud_track.forward(
             frame, category=cathegory, description=description
         )
@@ -97,8 +100,6 @@ def main(cfg: DictConfig) -> None:
                 frame, (box[0], box[1]), (box[2], box[3]), (0, 255, 0), 2
             )
 
-        # convert frame to BGR and display
-        frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         cv2.imshow("l", np.array(frame, dtype=np.uint8))
         cv2.waitKey(1)
 
