@@ -11,7 +11,7 @@ authors = [
 description = "Detection of objects in videos based on deep learning."
 requires-python = ">=3.9" # NOTE: oldest non-EOL python (update on 10.2025)
 dependencies = [
-    "torch==2.5.1",
+    "torch==2.6",
     "typer==0.13.1",
     "loguru==0.7.2",
     "msgpack==1.1.0",
