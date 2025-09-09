@@ -157,7 +157,7 @@ def live_demo(
     ui_theme: Annotated[
         str,
         typer.Option(
-            help="he theme of the UI. can be 'sar' for search and rescue missions or 'good' if a match is considered positive, i.e. when using cloud track for object detection.",
+            help="The theme of the UI. can be 'sar' for search and rescue missions or 'good' if a match is considered positive, i.e. when using cloud track for object detection.",
             autocompletion=complete_theme,
         ),
     ] = "sar",
