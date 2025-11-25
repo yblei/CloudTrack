@@ -24,6 +24,7 @@ install:          ## Install the project in dev mode.
 	@echo "Don't forget to run 'make virtualenv' if you got errors."
 	$(ENV_PREFIX)pip install setuptools
 	$(ENV_PREFIX)pip install wheel
+	$(ENV_PREFIX)pip install --no-build-isolation git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
 	$(ENV_PREFIX)pip install -e .[backend]
 
 .PHONY: fmt

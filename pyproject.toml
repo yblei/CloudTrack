@@ -37,7 +37,6 @@ backend = [
 "transformers==4.46.3",
 "bitsandbytes==0.44.1",
 "accelerate==1.1.1",
-"groundingdino @ git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44"
 ]
 
 dev = [

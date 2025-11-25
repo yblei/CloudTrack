@@ -1,6 +1,7 @@
 # CloudTrack: Scalable UAV Tracking with Cloud Semantics
 
 ![CI](https://github.com/utn-air/CloudTrack/actions/workflows/main.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.10.12-blue.svg)
 
 **Authors**: [Yannik Blei](https://www.utn.de/person/yannik-blei/), [Michael Krawez](https://www.utn.de/en/person/michael-krawez/), [Nisarga Nilavadi](https://www.utn.de/person/nisarga-nilavadi-chandregowda/), [Tanja Katharina Kaiser](https://www.utn.de/person/tanja-kaiser/), [Wolfram Burgard](https://www.utn.de/person/wolfram-burgard-2/)\
 ICRA 2025
@@ -13,6 +14,7 @@ Nowadays, unmanned aerial vehicles (UAVs) are commonly used in search and rescue
 
 
 ## Installation:
+We recommend using python 3.10.12.
 
 ### 1. Clone the repository
 
@@ -28,6 +30,7 @@ source ./.cloudtrack/bin/activate
 pip install wheel
 pip install setuptools
 pip install typeguard
+pip install --no-build-isolation git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
 pip install -e .[backend]
 ```
 
