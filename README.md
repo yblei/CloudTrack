@@ -30,8 +30,8 @@ source ./.cloudtrack/bin/activate
 pip install wheel
 pip install setuptools
 pip install typeguard
-pip install --no-build-isolation git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
 pip install -e .[backend]
+pip install --no-build-isolation git+https://github.com/IDEA-Research/GroundingDINO.git@856dde20aee659246248e20734ef9ba5214f5e44
 ```
 
 ### 3. Download the weights
