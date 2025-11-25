@@ -24,12 +24,12 @@ class OpenCVWrapper:
         self.tracker_type = tracker_type
 
         OPENCV_OBJECT_TRACKERS = (
-            {  # falls das nicht geht -> installiere opencv-contrib-python
-                "csrt": cv2.TrackerCSRT_create,
+            {  # disabled since not supported in newer opencv versions.
+                #"csrt": cv2.TrackerCSRT_create,
                 "daSiamRpn": dasiamrpn_tracker_factory,
                 "goturn": goturn_tracker_factory,
-                "kcf": cv2.TrackerKCF_create,
-                "mil": cv2.TrackerMIL_create,
+                #"kcf": cv2.TrackerKCF_create,
+                #"mil": cv2.TrackerMIL_create,
                 "nano": nano_tracker_factory,
                 "vit": vit_tracker_factory,
             }
