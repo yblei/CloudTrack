@@ -42,8 +42,7 @@ lint:             ## Run pep8, black, mypy linters.
 
 .PHONY: test
 test:             ## Run tests and generate coverage report.
-	## $(ENV_PREFIX)python -m unittest discover -s tests/ # we dont use this cause runner has no cuda.
-	$(ENV_PREFIX)python -m unittest tests/test_opencv_wrapper.py
+	$(ENV_PREFIX)python -m unittest tests/test_opencv_wrapper.py && \
 	$(ENV_PREFIX)python -m unittest tests/test_ci.py
 
 .PHONY: clean
