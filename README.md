@@ -12,7 +12,6 @@ Nowadays, unmanned aerial vehicles (UAVs) are commonly used in search and rescue
 
 **Refer to the official [publication](https://arxiv.org/pdf/2409.16111) and the [video](https://www.youtube.com/watch?v=GtfX8S_oMAE&t=25s) for more information.**
 
-
 ## Installation:
 We recommend using python 3.10.12.
 
@@ -93,6 +92,14 @@ sudo apt-get install libavdevice-dev
 pip install av==11.0.0 --no-binary av
 ```
 
-## Usage
 
-See [minimal_examply.py](minimal_examply.py) for further details on the implementation.
+**If you use CloudTrack in academic work, please cite:**
+
+    @inproceedings{Blei_2025,
+         title={CloudTrack: Scalable UAV Tracking with Cloud Semantics},
+         booktitle={2025 IEEE International Conference on Robotics and Automation (ICRA)},
+         publisher={IEEE},
+         author={Blei, Yannik and Krawez, Michael and Nilavadi, Nisarga and Kaiser, Tanja Katharina and Burgard, Wolfram},
+         year={2025},
+         month=may, pages={15893--15899},
+         }
